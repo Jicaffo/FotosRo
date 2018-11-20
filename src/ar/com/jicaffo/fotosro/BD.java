@@ -111,7 +111,9 @@ public class BD {
                             + "    pago_antes_de_grupal          BOOLEAN DEFAULT (false),\n"
                             + "    total_a_pagar                 DOUBLE  DEFAULT (0.0),\n"
                             + "    monto_abonado                 DOUBLE  DEFAULT (0.0),\n"
-                            + "    resta_abonar                  DOUBLE  DEFAULT (0.0) \n"
+                            + "    fecha_pago                    DATE,\n"
+                            + "    resta_abonar                  DOUBLE  DEFAULT (0.0),\n"
+                            + "    observaciones_alumno          STRING\n"
                             + ");";
                     st.execute(sql);
 
@@ -306,14 +308,18 @@ public class BD {
                 
                 double total = rs.getDouble("total_a_pagar");
                 double montoAbonado = rs.getDouble("monto_abonado");
+                Date fechaPago = rs.getDate("fecha_pago");
                 double restaAbonar = rs.getDouble("resta_abonar");
+                
+                String observacionesAlumno; //TO DO: ver si aplicar esta forma a los otros parámetros o cambio la forma en que se guardan para que no se guarden como null
+                if (rs.getString("observaciones_alumno") == null){observacionesAlumno = "";} else { observacionesAlumno = rs.getString("observaciones_alumno");}
 
                 Alumno a = new Alumno(idAlumno, nombreAlumno, idCursoAlumno,
                         archivoFotoIndividual, archivoFotoSeñoMña, archivoFotoSeñoTde, archivoFotoFaltoGrupalMña, archivoFotoFaltoGrupalTde,
                         fechaFotoIndividual, fechaFotoSeñoMña, fechaFotoSeñoTde, fechaFotoFaltoGrupalMña, fechaFotoFaltoGrupalTde,
                         pedidoIndividual, pedidoGrupalMña, pedidoGrupalTde, pedidoSenoMna, pedidoSenoTde, pedidoCarnet, pedidoParDeLLaveros,
                         estuvoEnGrupalMña, estuvoEnGrupalTde, pagoAntesDeLaGrupal,
-                        total, montoAbonado, restaAbonar);
+                        total, montoAbonado, fechaPago, restaAbonar, observacionesAlumno);
 
                 alumnos.add(a);
             }
@@ -394,6 +400,38 @@ public class BD {
         return cursoObtenido;
     }
 
+    public Curso obtenerCursoBDxId(int idCurso) {
+        Curso cursoObtenido = null;
+        String sql = "SELECT * FROM cursos WHERE id_curso = ?";
+        try {
+            conn = DriverManager.getConnection(this.urlBD);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idCurso);
+            ResultSet rs = ps.executeQuery();
+            //loop through the result set
+            while (rs.next()) {
+                int id = rs.getInt("id_curso");
+                String nombre = rs.getString("nombre_curso");
+                String turno = rs.getString("turno");
+                String archivoFoto = rs.getString("archivo_foto_grupal");
+                Date fechaFoto = rs.getDate("fecha_foto_grupal");
+
+                cursoObtenido = new Curso(id, nombre, turno, archivoFoto, fechaFoto);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return cursoObtenido;
+    }
+    
     public void mostrarEnConsolaTodosLosCursos() { //de prueba, finalmente borrar
         String sql = "SELECT * FROM cursos";
         try {

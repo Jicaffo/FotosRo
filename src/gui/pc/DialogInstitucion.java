@@ -72,7 +72,6 @@ public class DialogInstitucion extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(420, 515));
         setMinimumSize(new java.awt.Dimension(420, 515));
-        setPreferredSize(new java.awt.Dimension(420, 515));
 
         lblInstitucion.setText("Institucion:");
 

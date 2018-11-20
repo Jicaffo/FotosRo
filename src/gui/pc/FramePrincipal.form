@@ -37,9 +37,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="panelTabs" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="panelTabs" min="-2" pref="594" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,14 +50,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="tabbedPane" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="tabbedPane" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="tabbedPane" min="-2" pref="746" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="tabbedPane" min="-2" pref="582" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -83,33 +87,10 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="btAgregarAlumno" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="btModificarAlumno" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="lblRegistrosEncontrados" min="-2" pref="169" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="panelAlumnos" min="-2" pref="349" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="panelFotos" max="32767" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="panelDatosAlumno" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="panelFotoAlumno" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Component id="panelPago" max="32767" attributes="0"/>
-                                      <Component id="panelObservaciones" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblAño" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="cboAño" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="216" max="32767" attributes="0"/>
                                   <Component id="lblInstitucion" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="cboInstitucion" min="-2" pref="200" max="-2" attributes="0"/>
@@ -121,6 +102,37 @@
                                   <Component id="cboCurso" min="-2" pref="200" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btAgregarCurso" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="panelAlumnos" min="-2" pref="236" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="btAgregarAlumno" min="-2" pref="75" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btModificarAlumno" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lblRegistrosEncontrados" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="panelFotoAlumno" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="panelDatosAlumno" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="panelFotos" max="32767" attributes="0"/>
+                                              <Component id="panelObservaciones" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="panelPago" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -145,25 +157,31 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="panelDatosAlumno" min="-2" max="-2" attributes="0"/>
-                                      <Component id="panelFotoAlumno" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="panelFotos" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="panelObservaciones" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="panelFotoAlumno" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="panelDatosAlumno" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="panelFotos" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="panelPago" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="panelObservaciones" max="32767" attributes="0"/>
+                                  <Component id="panelPago" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="panelAlumnos" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="panelAlumnos" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btAgregarAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btModificarAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblRegistrosEncontrados" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btAgregarAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblRegistrosEncontrados" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btModificarAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -241,14 +259,10 @@
                   <SubComponents>
                     <Component class="javax.swing.JTable" name="tablaAlumnos">
                       <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                          </Table>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="modeloTabla" type="code"/>
                         </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -266,7 +280,7 @@
                 <Component class="javax.swing.JLabel" name="lblRegistrosEncontrados">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="text" type="java.lang.String" value=" XXX registros encontrados"/>
+                    <Property name="text" type="java.lang.String" value=" XXX alumnos"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="panelDatosAlumno">
@@ -285,20 +299,22 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="lblMaestra" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fieldNombre" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="fieldMaestra" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblMaestra" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="lblIdAlumno" min="-2" max="-2" attributes="0"/>
-                                              <Component id="fieldIdAlumno" min="-2" pref="110" max="-2" attributes="0"/>
+                                              <Component id="fieldIdAlumno" min="-2" pref="58" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="fieldTurno" min="-2" pref="110" max="-2" attributes="0"/>
                                               <Component id="lblTurno" min="-2" pref="54" max="-2" attributes="0"/>
+                                              <Component id="fieldTurno" min="-2" pref="79" max="-2" attributes="0"/>
                                           </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="fieldSeño" alignment="0" pref="155" max="32767" attributes="0"/>
+                                          <Component id="fieldNombre" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -329,7 +345,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="lblMaestra" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="fieldMaestra" min="-2" max="-2" attributes="0"/>
+                              <Component id="fieldSeño" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -362,7 +378,7 @@
                         <Property name="text" type="java.lang.String" value="Nombre Maestra"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldMaestra">
+                    <Component class="javax.swing.JTextField" name="fieldSe&#xf1;o">
                     </Component>
                   </SubComponents>
                 </Container>
@@ -378,12 +394,20 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblFotoAlumno" alignment="0" pref="183" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblFotoAlumno" min="-2" pref="154" max="-2" attributes="0"/>
+                              <EmptySpace pref="19" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblFotoAlumno" alignment="0" pref="183" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblFotoAlumno" pref="161" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -391,7 +415,7 @@
                     <Component class="javax.swing.JLabel" name="lblFotoAlumno">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="[Foto]"/>
+                        <Property name="text" type="java.lang.String" value="[Foto: Pendiente]"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -408,103 +432,125 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblGrupalM" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblIndividual" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblGrupalT" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblSenioM" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblSenioT" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblCarnet" alignment="0" min="-2" pref="66" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btMenosCarnet" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="fieldPedidoCarnet" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                      <Component id="btMasCarnet" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="fieldFechaSacadaCarnet" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btMenosSenioT" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="fieldPedidoSenioT" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                      <Component id="btMasSenioT" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="fieldFechaSacadaSenioT" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btMenosSenioM" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="fieldPedidoSenioM" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                      <Component id="btMasSenioM" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="fieldFechaSacadaSenioM" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="btMenosGrupalT" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="fieldPedidoGrupalT" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                      <Component id="btMasGrupalT" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="fieldFechaSacadaGrupalT" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btMenosGrupalM" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="fieldPedidoGrupalM" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                      <Component id="btMasGrupalM" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="fieldFechaSacadaGrupalM" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="btMenosIndividual" min="-2" pref="37" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="fieldPedidoIndividual" min="-2" pref="23" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="lblPedidos" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="btMasIndividual" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="lblFechaSacada" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                          <Component id="lblGrupalM" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lblIndividual" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lblGrupalT" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lblSeñoM" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="btMenosSeñoM" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="fieldPedidoSeñoM" min="-2" pref="23" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                              <Component id="btMasSeñoM" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="fieldFechaSeñoM" max="32767" attributes="0"/>
                                           </Group>
-                                          <Component id="fieldFechaSacadaIndividual" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="btMenosGrupalT" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="fieldPedidoGrupalT" min="-2" pref="23" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                              <Component id="btMasGrupalT" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="fieldFechaGrupalT" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="btMenosGrupalM" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="fieldPedidoGrupalM" min="-2" pref="23" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                              <Component id="btMasGrupalM" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="fieldFechaGrupalM" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="btMenosIndividual" min="-2" pref="37" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="fieldPedidoIndividual" min="-2" pref="23" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="lblPedidos" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Component id="btMasIndividual" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="lblFechaSacada" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="fieldFechaIndividual" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="fieldFotoIndividual" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Component id="fieldFotoGrupalM" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Component id="fieldFotoGrupalT" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Component id="fieldFotoSeñoM" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Component id="fieldFotoSeñoT" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Component id="lblFotoNro" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblSeñoT" min="-2" pref="66" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="btMenosSeñoT" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                                              <Component id="fieldPedidoSeñoT" min="-2" pref="23" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btMasSeñoT" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblCarnet" min="-2" pref="66" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="btMenosCarnet" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="fieldPedidoCarnet" min="-2" pref="23" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                              <Component id="btMasCarnet" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblParDeLlaveros" min="-2" pref="66" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="btMenosParDeLlaveros" min="-2" pref="37" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="fieldPedidoParDeLlaveros" min="-2" pref="23" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                              <Component id="btMasParDeLlaveros" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="chkFaltoGrupal" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fieldFechaSeñoT" min="-2" pref="70" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="98" pref="98" max="-2" attributes="0"/>
+                                              <Component id="fieldFotoFaltoGrupal" min="-2" pref="43" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="fieldFechaFaltoGrupal" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                      <Component id="fieldNroFotoIndividual" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Component id="fieldNroFotoGrupalM" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Component id="fieldNroFotoGrupalT" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Component id="fieldNroFotoSenioM" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Component id="fieldNroFotoSenioT" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Component id="lblFotoNro" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="fieldNroFotoCarnet" alignment="1" min="-2" pref="43" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btMasCombo1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btMasCombo2" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" pref="22" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btMasCombo1" max="32767" attributes="0"/>
+                                  <Component id="btMasCombo2" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -519,75 +565,78 @@
                                   <Component id="lblFotoNro" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btMenosIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btMasIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fieldPedidoIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fieldFechaSacadaIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fieldNroFotoIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btMenosIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btMasIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fieldPedidoIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fieldFechaIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fieldFotoIndividual" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lblGrupalM" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btMenosGrupalM" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="btMasGrupalM" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="fieldPedidoGrupalM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldFechaSacadaGrupalM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldNroFotoGrupalM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btMenosGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btMasGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldPedidoGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldFechaSacadaGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldNroFotoGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fieldFechaGrupalM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fieldFotoGrupalM" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="btMasCombo1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btMasCombo1" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btMenosGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btMasGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldPedidoGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldFechaGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldFotoGrupalT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblSenioM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btMenosSenioM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btMasSenioM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldPedidoSenioM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldFechaSacadaSenioM" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldNroFotoSenioM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblSeñoM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btMenosSeñoM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btMasSeñoM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fieldPedidoSeñoM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fieldFechaSeñoM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fieldFotoSeñoM" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblSenioT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btMenosSenioT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btMasSenioT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldPedidoSenioT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldFechaSacadaSenioT" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="fieldNroFotoSenioT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btMasSeñoT" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="btMenosSeñoT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="fieldFechaSeñoT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="fieldFotoSeñoT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="fieldPedidoSeñoT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblSeñoT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="btMasCombo2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="btMasCombo2" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblCarnet" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btMenosCarnet" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btMasCarnet" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="fieldPedidoCarnet" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fieldFechaSacadaCarnet" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fieldNroFotoCarnet" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="chkFaltoGrupal" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblParDeLlaveros" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btMenosParDeLlaveros" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btMasParDeLlaveros" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldPedidoParDeLlaveros" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldFechaFaltoGrupal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldFotoFaltoGrupal" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -620,6 +669,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMenosIndividualActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="fieldPedidoIndividual">
                       <Properties>
@@ -631,17 +683,18 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMasIndividualActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldFechaSacadaIndividual">
+                    <Component class="javax.swing.JTextField" name="fieldFechaIndividual">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="05/11/2018"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldNroFotoIndividual">
+                    <Component class="javax.swing.JTextField" name="fieldFotoIndividual">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="5588"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblGrupalM">
@@ -666,16 +719,14 @@
                         <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldFechaSacadaGrupalM">
+                    <Component class="javax.swing.JTextField" name="fieldFechaGrupalM">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="05/11/2018"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldNroFotoGrupalM">
+                    <Component class="javax.swing.JTextField" name="fieldFotoGrupalM">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="5588"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblGrupalT">
@@ -700,84 +751,78 @@
                         <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldFechaSacadaGrupalT">
+                    <Component class="javax.swing.JTextField" name="fieldFechaGrupalT">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="05/11/2018"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldNroFotoGrupalT">
+                    <Component class="javax.swing.JTextField" name="fieldFotoGrupalT">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="5588"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lblSenioM">
+                    <Component class="javax.swing.JLabel" name="lblSe&#xf1;oM">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="4"/>
                         <Property name="text" type="java.lang.String" value="Se&#xf1;o (M&#xf1;a):"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btMenosSenioM">
+                    <Component class="javax.swing.JButton" name="btMenosSe&#xf1;oM">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldPedidoSenioM">
+                    <Component class="javax.swing.JTextField" name="fieldPedidoSe&#xf1;oM">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btMasSenioM">
+                    <Component class="javax.swing.JButton" name="btMasSe&#xf1;oM">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldFechaSacadaSenioM">
+                    <Component class="javax.swing.JTextField" name="fieldFechaSe&#xf1;oM">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="05/11/2018"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldNroFotoSenioM">
+                    <Component class="javax.swing.JTextField" name="fieldFotoSe&#xf1;oM">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="5588"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lblSenioT">
+                    <Component class="javax.swing.JLabel" name="lblSe&#xf1;oT">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="4"/>
                         <Property name="text" type="java.lang.String" value="Se&#xf1;o (Tde):"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btMenosSenioT">
+                    <Component class="javax.swing.JButton" name="btMenosSe&#xf1;oT">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldPedidoSenioT">
+                    <Component class="javax.swing.JTextField" name="fieldPedidoSe&#xf1;oT">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btMasSenioT">
+                    <Component class="javax.swing.JButton" name="btMasSe&#xf1;oT">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldFechaSacadaSenioT">
+                    <Component class="javax.swing.JTextField" name="fieldFechaSe&#xf1;oT">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="05/11/2018"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldNroFotoSenioT">
+                    <Component class="javax.swing.JTextField" name="fieldFotoSe&#xf1;oT">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="5588"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblCarnet">
@@ -802,18 +847,26 @@
                         <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldFechaSacadaCarnet">
+                    <Component class="javax.swing.JLabel" name="lblParDeLlaveros">
                       <Properties>
-                        <Property name="horizontalAlignment" type="int" value="2"/>
-                        <Property name="text" type="java.lang.String" value="Idem Indiv."/>
-                        <Property name="enabled" type="boolean" value="false"/>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="text" type="java.lang.String" value="Llaveros:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="fieldNroFotoCarnet">
+                    <Component class="javax.swing.JButton" name="btMenosParDeLlaveros">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="-"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="fieldPedidoParDeLlaveros">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="-"/>
-                        <Property name="enabled" type="boolean" value="false"/>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btMasParDeLlaveros">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="btMasCombo1">
@@ -824,6 +877,23 @@
                     <Component class="javax.swing.JButton" name="btMasCombo2">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="C2+"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JCheckBox" name="chkFaltoGrupal">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Falt&#xf3; a grupal"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="fieldFechaFaltoGrupal">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="2"/>
+                        <Property name="enabled" type="boolean" value="false"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="fieldFotoFaltoGrupal">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                        <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -840,40 +910,42 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="lblTotal" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="fieldTotal" min="-2" pref="59" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                               <Component id="lblPago" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="fieldPago" min="-2" pref="59" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="lblFechaPago" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="fieldFechaPago" min="-2" pref="87" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="lblRestante" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="fieldRestante" min="-2" pref="59" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="fieldRestante" min="-2" pref="74" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="fieldRestante" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblRestante" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fieldTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fieldPago" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblPago" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldRestante" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblRestante" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFechaPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldFechaPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -898,6 +970,13 @@
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="4"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblFechaPago">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Fecha Pago:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="fieldFechaPago">
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblRestante">
                       <Properties>
@@ -934,8 +1013,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="scrollObs" pref="80" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="scrollObs" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -979,7 +1058,7 @@
                                   <Component id="panelAccionesRapidas" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                                  <EmptySpace pref="92" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -998,42 +1077,35 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="fieldPreNroFoto" min="-2" pref="65" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblNroFoto" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="fieldPostNroFoto" min="-2" pref="65" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btModificarNombreArchivos" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="fieldRutaCopiaImprenta" min="-2" pref="405" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btModificarRutaCopiaImprenta" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="fieldPreNroFoto" min="-2" pref="65" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="lblNroFoto" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="fieldPostNroFoto" min="-2" pref="65" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="btModificarNombreArchivos" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="fieldRutaCopiaImprenta" min="-2" pref="405" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="btModificarRutaCopiaImprenta" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="fieldRutaFotos" min="-2" pref="405" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btModificarRutaFotos" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="fieldRutaFotos" min="-2" pref="405" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="btModificarRutaFotos" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="fieldRutaBD" min="-2" pref="405" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="btModificarRutaBD" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="lblDetalleUltimaInstitucion" min="-2" pref="405" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="fieldRutaBD" min="-2" pref="405" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btModificarRutaBD" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="lblDetalleUltimaInstitucion" min="-2" pref="405" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="85" max="32767" attributes="0"/>
+                          <EmptySpace pref="177" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1071,7 +1143,7 @@
                               <Component id="fieldRutaCopiaImprenta" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btModificarRutaCopiaImprenta" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="321" max="32767" attributes="0"/>
+                          <EmptySpace pref="157" max="32767" attributes="0"/>
                           <Component id="panelAccionesRapidas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>

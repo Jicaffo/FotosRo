@@ -7,14 +7,16 @@ import ar.com.jicaffo.clasesbd.Curso;
 import ar.com.jicaffo.fotosro.BD;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.prefs.Preferences;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListSelectionModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.LookAndFeel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,17 +34,47 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
     };
     ListSelectionModel listSelectionModel;
+    private DefaultComboBoxModel<String> modeloComboApariencia;
+    
     private BD bd = new BD();
-    private static String rutaBD = "P:/Proyectos Personales pCloud/FotosRo/BD";
     private static int añoActual = 2018;
-    private static String ultimaBD = "Prueba1";
     private Curso cursoSeleccionado;
     private Alumno alumnoSeleccionado;
-
+    
+    public Preferences prefs;
+    private static String rutaBD = "P:/Proyectos Personales pCloud/FotosRo/BD";
+    private static String ultimaBD = "Prueba1";
+    private static String rutaFotos = "P:/Proyectos Personales pCloud/FotosRo/PruebasFotos";
+    private static String preNroFoto = "_DSC";
+    private static String postNroFoto = ".jpg";
+    private static String rutaCopiasImprenta = "P:/Proyectos Personales pCloud/FotosRo/PruebasFotos";
+    
+    
     public FramePrincipal() {
+        initPrefs();
+        initLookAndFeel(prefs.get("LAF_PREFERIDO", "com.sun.java.swing.plaf.windows.WindowsLookAndFeel"));
+        cargarModeloComboApariencia();
         initComponents();
         cargarModelos();
         this.setVisible(true);
+    }
+    
+    private void initPrefs() {
+        prefs = Preferences.userNodeForPackage(ar.com.jicaffo.fotosro.FotosRo.class);
+    }
+    
+    private void initLookAndFeel(String lafName) {
+        try {
+            UIManager.setLookAndFeel(lafName);
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (InstantiationException ex) {
+            ex.printStackTrace();
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
+        } catch (UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static String getRutaBD() {
@@ -85,6 +117,25 @@ public class FramePrincipal extends javax.swing.JFrame {
         modeloTabla.setColumnCount(2);
 
         seleccionTablaARevisar();
+    }
+    
+    private void cargarModeloComboApariencia() {
+        modeloComboApariencia = new DefaultComboBoxModel<String>();
+        modeloComboApariencia.addElement("javax.swing.plaf.metal.MetalLookAndFeel");
+        modeloComboApariencia.addElement("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.aero.AeroLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.fast.FastLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.luna.LunaLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.mint.MintLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.noire.NoireLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.smart.SmartLookAndFeel");
+        modeloComboApariencia.addElement("com.jtattoo.plaf.texture.TextureLookAndFeel");
     }
 
     private void seleccionTablaARevisar() {
@@ -159,9 +210,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         fieldFechaSeñoT.setText(String.valueOf(alumnoSeleccionado.getFechaSeñoTde()));
         fieldFechaGrupalM.setText(String.valueOf(c.getFechaFotoGrupal())); // TO DO: Por el momento carga los dos iguales
         fieldFechaGrupalT.setText(String.valueOf(c.getFechaFotoGrupal())); //
+        fieldFechaFaltoGrupalMña.setText(String.valueOf(alumnoSeleccionado.getFechaFotoFaltoGrupalMña()));
 
         fieldTotal.setText(String.valueOf(alumnoSeleccionado.getTotal()));
         fieldPago.setText(String.valueOf(alumnoSeleccionado.getMontoAbonado()));
+        fieldFechaPago.setText(String.valueOf(alumnoSeleccionado.getFechaPago()));
         fieldRestante.setText(String.valueOf(alumnoSeleccionado.getRestaAbonar()));
 
         textObs.setText(alumnoSeleccionado.getObservacionesAlumno());
@@ -241,15 +294,19 @@ public class FramePrincipal extends javax.swing.JFrame {
         btMenosCarnet = new javax.swing.JButton();
         fieldPedidoCarnet = new javax.swing.JTextField();
         btMasCarnet = new javax.swing.JButton();
+        btMasCombo1 = new javax.swing.JButton();
         lblParDeLlaveros = new javax.swing.JLabel();
         btMenosParDeLlaveros = new javax.swing.JButton();
         fieldPedidoParDeLlaveros = new javax.swing.JTextField();
         btMasParDeLlaveros = new javax.swing.JButton();
-        btMasCombo1 = new javax.swing.JButton();
         btMasCombo2 = new javax.swing.JButton();
-        chkFaltoGrupal = new javax.swing.JCheckBox();
-        fieldFechaFaltoGrupal = new javax.swing.JTextField();
-        fieldFotoFaltoGrupal = new javax.swing.JTextField();
+        lblFaltoGrupal = new javax.swing.JLabel();
+        lblFotoAEditar = new javax.swing.JLabel();
+        chkFaltoGrupalMña = new javax.swing.JCheckBox();
+        fieldFechaFaltoGrupalMña = new javax.swing.JTextField();
+        chkFaltoGrupalTde = new javax.swing.JCheckBox();
+        fieldFechaFaltoGrupalTde = new javax.swing.JTextField();
+        jSpinner1 = new javax.swing.JSpinner();
         panelPago = new javax.swing.JPanel();
         lblTotal = new javax.swing.JLabel();
         fieldTotal = new javax.swing.JTextField();
@@ -262,6 +319,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelObservaciones = new javax.swing.JPanel();
         scrollObs = new javax.swing.JScrollPane();
         textObs = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
         tabConfig = new javax.swing.JPanel();
         lblRutaBD = new javax.swing.JLabel();
         fieldRutaBD = new javax.swing.JTextField();
@@ -281,6 +339,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         btModificarRutaCopiaImprenta = new javax.swing.JButton();
         panelAccionesRapidas = new javax.swing.JPanel();
         btCrearCopiasImprenta = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        comboApariencia = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("FotosRo - (Version BETA)");
@@ -505,6 +565,8 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         btMasCarnet.setText("+");
 
+        btMasCombo1.setText("C1+");
+
         lblParDeLlaveros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblParDeLlaveros.setText("Llaveros:");
 
@@ -515,17 +577,17 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         btMasParDeLlaveros.setText("+");
 
-        btMasCombo1.setText("C1+");
-
         btMasCombo2.setText("C2+");
 
-        chkFaltoGrupal.setText("Faltó a grupal");
+        lblFaltoGrupal.setText("Falto a Grupal");
 
-        fieldFechaFaltoGrupal.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        fieldFechaFaltoGrupal.setEnabled(false);
+        lblFotoAEditar.setText("(Foto a editar)");
 
-        fieldFotoFaltoGrupal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        fieldFotoFaltoGrupal.setEnabled(false);
+        fieldFechaFaltoGrupalMña.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        fieldFechaFaltoGrupalMña.setEnabled(false);
+
+        fieldFechaFaltoGrupalTde.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fieldFechaFaltoGrupalTde.setEnabled(false);
 
         javax.swing.GroupLayout panelFotosLayout = new javax.swing.GroupLayout(panelFotos);
         panelFotos.setLayout(panelFotosLayout);
@@ -533,7 +595,51 @@ public class FramePrincipal extends javax.swing.JFrame {
             panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFotosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelFotosLayout.createSequentialGroup()
+                        .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelFotosLayout.createSequentialGroup()
+                                .addComponent(lblSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btMenosSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldPedidoSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btMasSeñoT))
+                            .addGroup(panelFotosLayout.createSequentialGroup()
+                                .addComponent(lblCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btMenosCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldPedidoCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(btMasCarnet))
+                            .addGroup(panelFotosLayout.createSequentialGroup()
+                                .addComponent(lblParDeLlaveros, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btMenosParDeLlaveros, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldPedidoParDeLlaveros, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(btMasParDeLlaveros)))
+                        .addGap(29, 29, 29)
+                        .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelFotosLayout.createSequentialGroup()
+                                .addComponent(fieldFechaSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldFotoSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFotosLayout.createSequentialGroup()
+                                        .addComponent(lblFotoNro)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblFotoAEditar, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblFaltoGrupal, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                            .addGroup(panelFotosLayout.createSequentialGroup()
+                                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btMasCombo1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                    .addComponent(btMasCombo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(panelFotosLayout.createSequentialGroup()
                         .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblGrupalM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -583,123 +689,107 @@ public class FramePrincipal extends javax.swing.JFrame {
                                         .addComponent(lblFechaSacada)
                                         .addGap(3, 3, 3))
                                     .addComponent(fieldFechaIndividual))))
-                        .addGap(28, 28, 28)
-                        .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldFotoIndividual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldFotoGrupalM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldFotoGrupalT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldFotoSeñoM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldFotoSeñoT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFotoNro)))
-                    .addGroup(panelFotosLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFotosLayout.createSequentialGroup()
-                                .addComponent(lblSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btMenosSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fieldPedidoSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btMasSeñoT))
-                            .addGroup(panelFotosLayout.createSequentialGroup()
-                                .addComponent(lblCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btMenosCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fieldPedidoCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(btMasCarnet))
-                            .addGroup(panelFotosLayout.createSequentialGroup()
-                                .addComponent(lblParDeLlaveros, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btMenosParDeLlaveros, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fieldPedidoParDeLlaveros, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(btMasParDeLlaveros)))
-                        .addGap(29, 29, 29)
-                        .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkFaltoGrupal)
-                            .addComponent(fieldFechaSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelFotosLayout.createSequentialGroup()
-                                .addGap(98, 98, 98)
-                                .addComponent(fieldFotoFaltoGrupal, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(fieldFechaFaltoGrupal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 22, Short.MAX_VALUE)
-                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btMasCombo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btMasCombo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelFotosLayout.createSequentialGroup()
+                                        .addComponent(fieldFotoIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(48, 48, 48))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFotosLayout.createSequentialGroup()
+                                        .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(panelFotosLayout.createSequentialGroup()
+                                                .addComponent(fieldFotoGrupalT, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(chkFaltoGrupalTde))
+                                            .addGroup(panelFotosLayout.createSequentialGroup()
+                                                .addComponent(fieldFotoGrupalM, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(chkFaltoGrupalMña)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldFechaFaltoGrupalMña, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fieldFechaFaltoGrupalTde, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fieldFotoSeñoM, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         panelFotosLayout.setVerticalGroup(
             panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFotosLayout.createSequentialGroup()
-                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPedidos)
-                    .addComponent(lblFechaSacada)
-                    .addComponent(lblFotoNro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFotosLayout.createSequentialGroup()
+                        .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPedidos)
+                            .addComponent(lblFechaSacada))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblIndividual)
                             .addComponent(btMenosIndividual)
                             .addComponent(btMasIndividual)
                             .addComponent(fieldPedidoIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fieldFechaIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldFotoIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblGrupalM)
-                            .addComponent(btMenosGrupalM)
-                            .addComponent(btMasGrupalM)
-                            .addComponent(fieldPedidoGrupalM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldFechaGrupalM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldFotoGrupalM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btMasCombo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblGrupalT)
-                    .addComponent(btMenosGrupalT)
-                    .addComponent(btMasGrupalT)
-                    .addComponent(fieldPedidoGrupalT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldFechaGrupalT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldFotoGrupalT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fieldFotoIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelFotosLayout.createSequentialGroup()
                         .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSeñoM)
-                            .addComponent(btMenosSeñoM)
-                            .addComponent(btMasSeñoM)
-                            .addComponent(fieldPedidoSeñoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldFechaSeñoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldFotoSeñoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblFotoNro)
+                            .addComponent(lblFaltoGrupal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btMasSeñoT, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btMenosSeñoT)
-                                .addComponent(fieldFechaSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(fieldFotoSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(fieldPedidoSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblSeñoT))))
-                    .addComponent(btMasCombo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblFotoAEditar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblGrupalM)
+                        .addComponent(btMenosGrupalM)
+                        .addComponent(btMasGrupalM)
+                        .addComponent(fieldPedidoGrupalM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldFechaGrupalM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldFotoGrupalM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldFechaFaltoGrupalMña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chkFaltoGrupalMña))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblGrupalT)
+                        .addComponent(btMenosGrupalT)
+                        .addComponent(btMasGrupalT)
+                        .addComponent(fieldPedidoGrupalT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldFechaGrupalT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldFotoGrupalT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldFechaFaltoGrupalTde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chkFaltoGrupalTde))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSeñoM)
+                    .addComponent(btMenosSeñoM)
+                    .addComponent(btMasSeñoM)
+                    .addComponent(fieldPedidoSeñoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldFechaSeñoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldFotoSeñoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btMasSeñoT, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btMenosSeñoT)
+                        .addComponent(fieldFechaSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fieldPedidoSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblSeñoT)
+                        .addComponent(fieldFotoSeñoT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCarnet)
                     .addComponent(btMenosCarnet)
                     .addComponent(btMasCarnet)
                     .addComponent(fieldPedidoCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkFaltoGrupal))
+                    .addComponent(btMasCombo1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFotosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblParDeLlaveros)
                     .addComponent(btMenosParDeLlaveros)
                     .addComponent(btMasParDeLlaveros)
                     .addComponent(fieldPedidoParDeLlaveros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldFechaFaltoGrupal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldFotoFaltoGrupal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btMasCombo2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -724,23 +814,23 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelPagoLayout.setHorizontalGroup(
             panelPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPagoLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTotal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addGap(35, 35, 35)
                 .addComponent(lblPago)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fieldPago, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(30, 30, 30)
                 .addComponent(lblFechaPago)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fieldFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addComponent(lblRestante)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fieldRestante, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addGap(202, 202, 202))
         );
         panelPagoLayout.setVerticalGroup(
             panelPagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -781,6 +871,8 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGap(8, 8, 8))
         );
 
+        jButton1.setText("Guardar");
+
         javax.swing.GroupLayout tabAlumnosLayout = new javax.swing.GroupLayout(tabAlumnos);
         tabAlumnos.setLayout(tabAlumnosLayout);
         tabAlumnosLayout.setHorizontalGroup(
@@ -792,18 +884,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                         .addComponent(lblAño)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cboAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
-                        .addComponent(lblInstitucion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btAgregarInstitucion)
-                        .addGap(66, 66, 66)
-                        .addComponent(lblCurso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btAgregarCurso))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(tabAlumnosLayout.createSequentialGroup()
                         .addGroup(tabAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panelAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -817,16 +898,32 @@ public class FramePrincipal extends javax.swing.JFrame {
                             .addGroup(tabAlumnosLayout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addGroup(tabAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(panelFotoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(panelDatosAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(tabAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(panelFotos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(panelObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(47, 47, 47))
+                                    .addGroup(tabAlumnosLayout.createSequentialGroup()
+                                        .addGroup(tabAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(panelFotoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(panelDatosAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(tabAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(panelFotos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(panelObservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(tabAlumnosLayout.createSequentialGroup()
+                                        .addComponent(lblInstitucion)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cboInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btAgregarInstitucion)
+                                        .addGap(66, 66, 66)
+                                        .addComponent(lblCurso)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cboCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btAgregarCurso)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(tabAlumnosLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(panelPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(panelPago, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         tabAlumnosLayout.setVerticalGroup(
@@ -855,7 +952,9 @@ public class FramePrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(panelDatosAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelPago, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGroup(tabAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelPago, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(tabAlumnosLayout.createSequentialGroup()
                         .addComponent(panelAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -881,7 +980,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         lblRutaFotos.setText("Ruta de acceso a las fotos:");
 
-        fieldRutaFotos.setText("P:\\Proyectos Personales pCloud\\FotosRo\\PruebasFotos");
+        fieldRutaFotos.setText(rutaFotos);
         fieldRutaFotos.setEnabled(false);
 
         btModificarRutaFotos.setText("Modificar");
@@ -889,12 +988,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         lblNombreArchivos.setText("Nombres de archivos:");
 
         fieldPreNroFoto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        fieldPreNroFoto.setText("_DSC");
+        fieldPreNroFoto.setText(preNroFoto);
         fieldPreNroFoto.setEnabled(false);
 
         lblNroFoto.setText("+ Nº de Foto +");
 
-        fieldPostNroFoto.setText(".jpg");
+        fieldPostNroFoto.setText(postNroFoto);
         fieldPostNroFoto.setEnabled(false);
 
         btModificarNombreArchivos.setLabel("Modificar");
@@ -928,6 +1027,15 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
+        jLabel1.setText("Apariencia:");
+
+        comboApariencia.setModel(modeloComboApariencia);
+        comboApariencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAparienciaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabConfigLayout = new javax.swing.GroupLayout(tabConfig);
         tabConfig.setLayout(tabConfigLayout);
         tabConfigLayout.setHorizontalGroup(
@@ -938,7 +1046,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(panelAccionesRapidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(tabConfigLayout.createSequentialGroup()
-                        .addContainerGap(92, Short.MAX_VALUE)
+                        .addContainerGap(61, Short.MAX_VALUE)
                         .addGroup(tabConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tabConfigLayout.createSequentialGroup()
                                 .addGroup(tabConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -949,7 +1057,8 @@ public class FramePrincipal extends javax.swing.JFrame {
                             .addGroup(tabConfigLayout.createSequentialGroup()
                                 .addGroup(tabConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNombreArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRutaCopiaImprenta, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblRutaCopiaImprenta, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
                                 .addGap(38, 38, 38)))
                         .addGroup(tabConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(tabConfigLayout.createSequentialGroup()
@@ -961,10 +1070,6 @@ public class FramePrincipal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btModificarNombreArchivos))
                             .addGroup(tabConfigLayout.createSequentialGroup()
-                                .addComponent(fieldRutaCopiaImprenta, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btModificarRutaCopiaImprenta))
-                            .addGroup(tabConfigLayout.createSequentialGroup()
                                 .addComponent(fieldRutaFotos, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btModificarRutaFotos))
@@ -972,8 +1077,14 @@ public class FramePrincipal extends javax.swing.JFrame {
                                 .addComponent(fieldRutaBD, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btModificarRutaBD))
-                            .addComponent(lblDetalleUltimaInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(177, Short.MAX_VALUE))
+                            .addComponent(lblDetalleUltimaInstitucion, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(tabConfigLayout.createSequentialGroup()
+                                .addGroup(tabConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(comboApariencia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(fieldRutaCopiaImprenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btModificarRutaCopiaImprenta)))))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         tabConfigLayout.setVerticalGroup(
             tabConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1004,7 +1115,11 @@ public class FramePrincipal extends javax.swing.JFrame {
                     .addComponent(lblRutaCopiaImprenta)
                     .addComponent(fieldRutaCopiaImprenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btModificarRutaCopiaImprenta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(tabConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(comboApariencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(panelAccionesRapidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -1089,42 +1204,13 @@ public class FramePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btMenosIndividualActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
- /*try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-         */
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FramePrincipal().setVisible(true);
-            }
-        });
-    }
+    private void comboAparienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAparienciaActionPerformed
+        String laf = (String)comboApariencia.getSelectedItem();
+        prefs.put("LAF_PREFERIDO", laf);
+        initLookAndFeel(laf);
+        SwingUtilities.updateComponentTreeUI(this);
+        
+    }//GEN-LAST:event_comboAparienciaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarAlumno;
@@ -1155,15 +1241,17 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboAño;
     private javax.swing.JComboBox<Curso> cboCurso;
     private javax.swing.JComboBox<String> cboInstitucion;
-    private javax.swing.JCheckBox chkFaltoGrupal;
-    private javax.swing.JTextField fieldFechaFaltoGrupal;
+    private javax.swing.JCheckBox chkFaltoGrupalMña;
+    private javax.swing.JCheckBox chkFaltoGrupalTde;
+    private javax.swing.JComboBox<String> comboApariencia;
+    private javax.swing.JTextField fieldFechaFaltoGrupalMña;
+    private javax.swing.JTextField fieldFechaFaltoGrupalTde;
     private javax.swing.JTextField fieldFechaGrupalM;
     private javax.swing.JTextField fieldFechaGrupalT;
     private javax.swing.JTextField fieldFechaIndividual;
     private javax.swing.JTextField fieldFechaPago;
     private javax.swing.JTextField fieldFechaSeñoM;
     private javax.swing.JTextField fieldFechaSeñoT;
-    private javax.swing.JTextField fieldFotoFaltoGrupal;
     private javax.swing.JTextField fieldFotoGrupalM;
     private javax.swing.JTextField fieldFotoGrupalT;
     private javax.swing.JTextField fieldFotoIndividual;
@@ -1188,12 +1276,17 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField fieldSeño;
     private javax.swing.JTextField fieldTotal;
     private javax.swing.JTextField fieldTurno;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblAño;
     private javax.swing.JLabel lblCarnet;
     private javax.swing.JLabel lblCurso;
     private javax.swing.JLabel lblDetalleUltimaInstitucion;
+    private javax.swing.JLabel lblFaltoGrupal;
     private javax.swing.JLabel lblFechaPago;
     private javax.swing.JLabel lblFechaSacada;
+    private javax.swing.JLabel lblFotoAEditar;
     private javax.swing.JLabel lblFotoAlumno;
     private javax.swing.JLabel lblFotoNro;
     private javax.swing.JLabel lblGrupalM;

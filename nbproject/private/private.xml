@@ -7,18 +7,12 @@
         </group>
         <group name="Proyectos Personales pCloud">
             <file>file:/P:/Proyectos%20Personales%20pCloud/FotosRo/src/gui/pc/FramePrincipal.java</file>
-            <file>file:/P:/Proyectos%20Personales%20pCloud/FotosRo/src/ar/com/jicaffo/fotosro/BD.java</file>
-            <file>file:/P:/Proyectos%20Personales%20pCloud/FotosRo/src/gui/pc/DialogCurso.java</file>
-            <file>file:/P:/Proyectos%20Personales%20pCloud/FotosRo/src/ar/com/jicaffo/clasesbd/Alumno.java</file>
-            <file>file:/P:/Proyectos%20Personales%20pCloud/FotosRo/src/gui/pc/DialogInstitucion.java</file>
+            <file>file:/P:/Proyectos%20Personales%20pCloud/FotosRo/src/ar/com/jicaffo/fotosro/FotosRo.java</file>
         </group>
         <group name="Proyectos Personales">
-            <file>file:/C:/Users/Juan/Desktop/PRUEBAS%20PROGRAMACION/Proyectos%20Personales/Proyectos%20Personales%20pCloud/FotosRo/src/gui/pc/DialogCurso.java</file>
             <file>file:/C:/Users/Juan/Desktop/PRUEBAS%20PROGRAMACION/Proyectos%20Personales/Proyectos%20Personales%20pCloud/FotosRo/src/ar/com/jicaffo/fotosro/BD.java</file>
-            <file>file:/C:/Users/Juan/Desktop/PRUEBAS%20PROGRAMACION/Proyectos%20Personales/Proyectos%20Personales%20pCloud/FotosRo/src/ar/com/jicaffo/clasesbd/Curso.java</file>
             <file>file:/C:/Users/Juan/Desktop/PRUEBAS%20PROGRAMACION/Proyectos%20Personales/Proyectos%20Personales%20pCloud/FotosRo/src/ar/com/jicaffo/clasesbd/Alumno.java</file>
             <file>file:/C:/Users/Juan/Desktop/PRUEBAS%20PROGRAMACION/Proyectos%20Personales/Proyectos%20Personales%20pCloud/FotosRo/src/gui/pc/FramePrincipal.java</file>
-            <file>file:/C:/Users/Juan/Desktop/PRUEBAS%20PROGRAMACION/Proyectos%20Personales/Proyectos%20Personales%20pCloud/FotosRo/src/gui/pc/DialogInstitucion.java</file>
             <file>file:/C:/Users/Juan/Desktop/PRUEBAS%20PROGRAMACION/Proyectos%20Personales/Proyectos%20Personales%20pCloud/FotosRo/src/ar/com/jicaffo/fotosro/FotosRo.java</file>
         </group>
     </open-files>

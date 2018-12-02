@@ -280,7 +280,7 @@ public class DialogCurso extends javax.swing.JDialog {
         }
 
         bd.setUrlBD("jdbc:sqlite:BD/2018/Prueba1.db");
-        bd.insertarCursoSinFoto(c);
+        bd.insertarCursoSinFoto(c); //ARevisar: Si esto tira error (por ejemplo nombre de curso ya tomado), se cuelga el programa y no se recupera.
 
         //Guardar Alumnos (recuperar primero el ID del curso recién insertado)
         if (!arrayAlumnos.isEmpty()) {
@@ -290,10 +290,7 @@ public class DialogCurso extends javax.swing.JDialog {
             }
             bd.insertarAlumnos(arrayAlumnos);
         }
-
         this.dispose();
-
-
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void btGuardarYOtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarYOtroActionPerformed

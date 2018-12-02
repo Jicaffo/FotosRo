@@ -99,15 +99,15 @@ public class BD {
                             + "    fecha_foto_seño_tde           DATE,\n"
                             + "    fecha_foto_falto_grupal_mña   DATE,\n"
                             + "    fecha_foto_falto_grupal_tde   DATE    DEFAULT NULL,\n"
-                            + "    pedido_individual             INTEGER,\n"
+                            + "    pedido_individual             INTEGER DEFAULT (0),\n"
                             + "    pedido_grupal_mña             INTEGER DEFAULT (0),\n"
                             + "    pedido_grupal_tde             INTEGER DEFAULT (0),\n"
                             + "    pedido_seño_mña               INTEGER DEFAULT (0),\n"
                             + "    pedido_seño_tde               INTEGER DEFAULT (0),\n"
                             + "    pedido_carnet                 INTEGER DEFAULT (0),\n"
                             + "    pedido_llaveros               INTEGER DEFAULT (0),\n"
-                            + "    estuvo_en_grupal_mña          BOOLEAN DEFAULT (true),\n"
-                            + "    estuvo_en_grupal_tde          BOOLEAN DEFAULT (true),\n"
+                            + "    falto_grupal_mña              BOOLEAN DEFAULT (false),\n"
+                            + "    falto_grupal_tde              BOOLEAN DEFAULT (false),\n"
                             + "    pago_antes_de_grupal          BOOLEAN DEFAULT (false),\n"
                             + "    total_a_pagar                 DOUBLE  DEFAULT (0.0),\n"
                             + "    monto_abonado                 DOUBLE  DEFAULT (0.0),\n"
@@ -219,6 +219,54 @@ public class BD {
         }
     }
 
+    public void updateAlumno(Alumno a) {
+        // Este update no incluye modificación del nombre o el ID de curso.
+        String sql = "UPDATE alumnos SET \n"
+                + "    archivo_foto_individual = "+a.getArchivoFotoIndividual()+",\n"
+                + "    archivo_foto_seño_mña = "+a.getArchivoFotoSeñoMña()+",\n"
+                + "    archivo_foto_seño_tde = "+a.getArchivoFotoSeñoTde()+",\n"
+                + "    archivo_foto_falto_grupal_mña = "+a.getArchivoFotoFaltoGrupalMña()+",\n"
+                + "    archivo_foto_falto_grupal_tde = "+a.getArchivoFotoFaltoGrupalTde()+",\n"
+                + "    fecha_foto_individual = "+a.getFechaIndividual()+",\n"
+                + "    fecha_foto_seño_mña = "+a.getFechaSeñoMña()+",\n"
+                + "    fecha_foto_seño_tde = "+a.getFechaSeñoTde()+",\n"
+                + "    fecha_foto_falto_grupal_mña = "+a.getFechaFotoFaltoGrupalMña()+",\n"
+                + "    fecha_foto_falto_grupal_tde = "+a.getFechaFotoFaltoGrupalTde()+",\n"
+                + "    pedido_individual = "+a.getPedidoIndividual()+",\n"
+                + "    pedido_grupal_mña = "+a.getPedidoGrupalMña()+",\n"
+                + "    pedido_grupal_tde = "+a.getPedidoGrupalTde()+",\n"
+                + "    pedido_seño_mña = "+a.getPedidoSeñoMña()+",\n"
+                + "    pedido_seño_tde = "+a.getPedidoSeñoTde()+",\n"
+                + "    pedido_carnet = "+a.getPedidoCarnet()+",\n"
+                + "    pedido_llaveros = "+a.getPedidoParDeLLaveros()+",\n"
+                + "    falto_grupal_mña = "+a.faltoGrupalMña()+",\n"
+                + "    falto_grupal_tde = "+a.faltoGrupalTde()+",\n"
+                + "    pago_antes_de_grupal = "+a.pagoAntesDeLaGrupal()+",\n"
+                + "    total_a_pagar = "+a.getTotal()+",\n"
+                + "    monto_abonado = "+a.getMontoAbonado()+",\n"
+                + "    fecha_pago = "+a.getFechaPago()+",\n"
+                + "    resta_abonar = "+a.getRestaAbonar()+",\n"
+                + "    observaciones_alumno = \'"+a.getObservacionesAlumno()+"\' \n"
+                + "    WHERE "
+                + "    id_alumno = "+a.getIdAlumno()+";";
+        try {
+            conn = DriverManager.getConnection(urlBD);
+            st = conn.createStatement();
+            st.execute(sql);
+            System.out.println("Se ha actualizado Correctamente a " + a.getNombreAlumno() + ", con las siguientes observaciones "+a.getObservacionesAlumno());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     public void insertarCursoSinFoto(Curso c) {
         // SQL statement for creating a new table
         String sql = "INSERT INTO cursos(nombre_curso, turno) VALUES(?,?)";
@@ -232,6 +280,8 @@ public class BD {
             System.out.println("Se ha insertado correctamente \"" + c.getNombreCurso() + "\" a la tabla cursos");
         } catch (SQLException ex) {
             ex.printStackTrace();
+            //AREVISAR: intentar distinguir de una excepcion por nombre ya ingresado en la base de datos y otras excepciones SQL
+            JOptionPane.showMessageDialog(null, "El nuevo curso \"" + c.getNombreCurso() + "\" no ha podido instertarse en la Base de Datos.\nEs probable que ya hubiera un curso con ese nombre, pruebe nuevamente.", "Error de escritura en Base de datos", JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
                 if (conn != null) {
@@ -281,7 +331,7 @@ public class BD {
                 int idAlumno = rs.getInt("id_alumno");
                 String nombreAlumno = rs.getString("nombre_alumno");
                 int idCursoAlumno = rs.getInt("id_curso_alumno");
-                
+
                 String archivoFotoIndividual = rs.getString("archivo_foto_individual");
                 String archivoFotoSeñoMña = rs.getString("archivo_foto_seño_mña");
                 String archivoFotoSeñoTde = rs.getString("archivo_foto_seño_tde");
@@ -293,7 +343,7 @@ public class BD {
                 Date fechaFotoSeñoTde = rs.getDate("fecha_foto_seño_tde");
                 Date fechaFotoFaltoGrupalMña = rs.getDate("fecha_foto_falto_grupal_mña");
                 Date fechaFotoFaltoGrupalTde = rs.getDate("fecha_foto_falto_grupal_tde");
-                
+
                 int pedidoIndividual = rs.getInt("pedido_individual");
                 int pedidoGrupalMña = rs.getInt("pedido_grupal_mña");
                 int pedidoGrupalTde = rs.getInt("pedido_grupal_tde");
@@ -301,24 +351,23 @@ public class BD {
                 int pedidoSenoTde = rs.getInt("pedido_seño_tde");
                 int pedidoCarnet = rs.getInt("pedido_carnet");
                 int pedidoParDeLLaveros = rs.getInt("pedido_llaveros");
-                
-                boolean estuvoEnGrupalMña = rs.getBoolean("estuvo_en_grupal_mña");
-                boolean estuvoEnGrupalTde = rs.getBoolean("estuvo_en_grupal_tde");
+
+                boolean faltoGrupalMña = rs.getBoolean("falto_grupal_mña");
+                boolean faltoGrupalTde = rs.getBoolean("falto_grupal_tde");
                 boolean pagoAntesDeLaGrupal = rs.getBoolean("pago_antes_de_grupal");
-                
+
                 double total = rs.getDouble("total_a_pagar");
                 double montoAbonado = rs.getDouble("monto_abonado");
                 Date fechaPago = rs.getDate("fecha_pago");
                 double restaAbonar = rs.getDouble("resta_abonar");
-                
-                String observacionesAlumno; //TO DO: ver si aplicar esta forma a los otros parámetros o cambio la forma en que se guardan para que no se guarden como null
-                if (rs.getString("observaciones_alumno") == null){observacionesAlumno = "";} else { observacionesAlumno = rs.getString("observaciones_alumno");}
+
+                String observacionesAlumno = rs.getString("observaciones_alumno");
 
                 Alumno a = new Alumno(idAlumno, nombreAlumno, idCursoAlumno,
                         archivoFotoIndividual, archivoFotoSeñoMña, archivoFotoSeñoTde, archivoFotoFaltoGrupalMña, archivoFotoFaltoGrupalTde,
                         fechaFotoIndividual, fechaFotoSeñoMña, fechaFotoSeñoTde, fechaFotoFaltoGrupalMña, fechaFotoFaltoGrupalTde,
                         pedidoIndividual, pedidoGrupalMña, pedidoGrupalTde, pedidoSenoMna, pedidoSenoTde, pedidoCarnet, pedidoParDeLLaveros,
-                        estuvoEnGrupalMña, estuvoEnGrupalTde, pagoAntesDeLaGrupal,
+                        faltoGrupalMña, faltoGrupalTde, pagoAntesDeLaGrupal,
                         total, montoAbonado, fechaPago, restaAbonar, observacionesAlumno);
 
                 alumnos.add(a);
@@ -350,7 +399,7 @@ public class BD {
                 String turno = rs.getString("turno");
                 String archivoFoto = rs.getString("archivo_foto_grupal");
                 Date fechaFoto = rs.getDate("fecha_foto_grupal");
-                
+
                 todosLosCursos.add(new Curso(id, nombre, turno, archivoFoto, fechaFoto));
             }
 
@@ -431,8 +480,8 @@ public class BD {
         }
         return cursoObtenido;
     }
-    
-    public void mostrarEnConsolaTodosLosCursos() { //de prueba, finalmente borrar
+
+    public void mostrarEnConsolaTodosLosCursos() { //TEST de prueba, finalmente borrar
         String sql = "SELECT * FROM cursos";
         try {
             conn = DriverManager.getConnection(this.urlBD);

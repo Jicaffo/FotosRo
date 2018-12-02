@@ -12,11 +12,11 @@ public class Alumno {
     //Ver si trabajar como String o File
     //private String archivoFotoGrupal = null; // Esta la sacaría de la clase Curso
     //Date fechaFotoGrupal = null;
-    private String archivoFotoIndividual = "";
-    private String archivoFotoSeñoMña = "";
-    private String archivoFotoSeñoTde = "";
-    private String archivoFotoFaltoGrupalMña = ""; //tal vez se pueda clasificar en carpeta "para editar"
-    private String archivoFotoFaltoGrupalTde = ""; //tal vez se pueda clasificar en carpeta "para editar"
+    private String archivoFotoIndividual;
+    private String archivoFotoSeñoMña;
+    private String archivoFotoSeñoTde;
+    private String archivoFotoFaltoGrupalMña; //tal vez se pueda clasificar en carpeta "para editar"
+    private String archivoFotoFaltoGrupalTde; //tal vez se pueda clasificar en carpeta "para editar"
 
     private Date fechaIndividual;
     private Date fechaSeñoMña;
@@ -41,11 +41,11 @@ public class Alumno {
     
     private double restaAbonar = 0;
 
-    private boolean estuvoEnGrupalMña = true; //Debería modificarse si al momento de sacar la foto grupal se pone que estaba ausente
-    private boolean estuvoEnGrupalTde = true; //Debería modificarse si al momento de sacar la foto grupal se pone que estaba ausente
+    private boolean faltoGrupalMña = false; //Debería modificarse si al momento de sacar la foto grupal se pone que estaba ausente
+    private boolean faltoGrupalTde = false; //Debería modificarse si al momento de sacar la foto grupal se pone que estaba ausente
     private boolean pagoAntesDeLaGrupal = false; //Debería modificarse en el momento que paga
     
-    private String observacionesAlumno = "";
+    private String observacionesAlumno;
     
     //Para prueba rápida o pre-carga con datos mínimos
     public Alumno(String nombre) {
@@ -61,7 +61,7 @@ public class Alumno {
             String archivoFotoIndividual, String archivoFotoSeñoMña, String archivoFotoSeñoTde, String archivoFotoFaltoGrupalMña, String archivoFotoFaltoGrupalTde,
             Date fechaFotoIndividual, Date fechaFotoSeñoMña, Date fechaFotoSeñoTde, Date fechaFotoFaltoGrupalMña, Date fechaFotoFaltoGrupalTde,
             int pedidoIndividual, int pedidoGrupalMña, int pedidoGrupalTde, int pedidoSenoMna, int pedidoSenoTde, int pedidoCarnet, int pedidoParDeLLaveros,
-            boolean estuvoEnGrupalMña, boolean estuvoEnGrupalTde, boolean pagoAntesDeLaGrupal,
+            boolean faltoGrupalMña, boolean faltoGrupalTde, boolean pagoAntesDeLaGrupal,
             double total, double montoAbonado, Date fechaPago, double restaAbonar, String observacionesAlumno) {
         
         this.idAlumno = idAlumno;
@@ -88,8 +88,8 @@ public class Alumno {
         this.pedidoCarnet = pedidoCarnet;
         this.pedidoParDeLLaveros = pedidoParDeLLaveros;
         
-        this.estuvoEnGrupalMña = estuvoEnGrupalMña;
-        this.estuvoEnGrupalTde = estuvoEnGrupalTde;
+        this.faltoGrupalMña = faltoGrupalMña;
+        this.faltoGrupalTde = faltoGrupalTde;
         this.pagoAntesDeLaGrupal = pagoAntesDeLaGrupal;
         
         this.total = total;
@@ -284,23 +284,23 @@ public class Alumno {
         this.restaAbonar = restaAbonar;
     }
 
-    public boolean isEstuvoEnGrupalMña() {
-        return estuvoEnGrupalMña;
+    public boolean faltoGrupalMña() {
+        return faltoGrupalMña;
     }
 
-    public void setEstuvoEnGrupalMña(boolean estuvoEnGrupalMña) {
-        this.estuvoEnGrupalMña = estuvoEnGrupalMña;
+    public void setFaltoGrupalMña(boolean faltoGrupalMña) {
+        this.faltoGrupalMña = faltoGrupalMña;
     }
 
-    public boolean isEstuvoEnGrupalTde() {
-        return estuvoEnGrupalTde;
+    public boolean faltoGrupalTde() {
+        return faltoGrupalTde;
     }
 
-    public void setEstuvoEnGrupalTde(boolean estuvoEnGrupalTde) {
-        this.estuvoEnGrupalTde = estuvoEnGrupalTde;
+    public void setFaltoGrupalTde(boolean faltoGrupalTde) {
+        this.faltoGrupalTde = faltoGrupalTde;
     }
 
-    public boolean isPagoAntesDeLaGrupal() {
+    public boolean pagoAntesDeLaGrupal() {
         return pagoAntesDeLaGrupal;
     }
 

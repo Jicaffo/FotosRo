@@ -16,6 +16,11 @@ las grupales de todos los cursos van en una carpeta aparte al nivel de los curso
 - Por defecto debería cargarse la última BD y curso utilizados al abrir el programa y el año vigente si no se seleccionó ninguno.
 
 Crear persistencia mediante Properties o Preferences (todas las cosas de configuración
+
+ANOTACIONES: (Ver si reemplazar a futuro por @anotacion?
+- TO DO / TODO: para hacer
+- TEST: codigo de pruebas borrar al final
+- ARevisar: eso mismo. buscar sin match case
  */
 package ar.com.jicaffo.fotosro;
 
@@ -26,13 +31,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class FotosRo {
 
     public static void main(String[] args) {
-        System.out.println("Look And Feel Actual: "+UIManager.getLookAndFeel().getClass().getName());
-        System.out.println("System Look And Feel: "+UIManager.getSystemLookAndFeelClassName());
-        System.out.println("Cross Platform Look And Feel: "+UIManager.getCrossPlatformLookAndFeelClassName());
-        System.out.println("Look And Feels implementations available: "+UIManager.getInstalledLookAndFeels());
-        
-        
-        
         /*BD bd = new BD();
         bd.setUrlBD("jdbc:sqlite:BD/2018/Prueba1.db");
         bd.mostrarEnConsolaTodosLosCursos();
